@@ -36,7 +36,7 @@ contract Betting{
     bool public betting_open=false;
     bool public match_ended=false;
 
-    function set_team_names(string memory _team1, string memory _team2) public{
+    function set_team_names(string memory _team1, string memory _team2) public onlyOwner{
         require(teams_set==false, "team names are already set");
         team1_name = _team1;
         team2_name = _team2;
@@ -48,7 +48,8 @@ contract Betting{
         require(teams_set==true, "Teams are not configured");
         require(betting_open==true, "Betting is not open");
         require(team_no==1||team_no==2,"Enter valid Team number");
-        bets.push(Bet(payable(msg.sender), team_no, msg.value));
+        require(msg.value>=min_bet_amount,"You are not meeting the bet threshhold.");
+        bets.push(Bet(payable(msg.sender),msg.value,team_no));
         if(team_no==1){
           team1_amount+=msg.value;
         }
@@ -58,7 +59,7 @@ contract Betting{
         total_bets++;
     }
 
-    function close_betting() public{
+    function close_betting() public onlyOwner{
         require(betting_open==true, "Betting already closed!");
         betting_open = false;
     }
