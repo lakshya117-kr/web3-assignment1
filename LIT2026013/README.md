@@ -1,7 +1,19 @@
 # Web3 Assignment 1
 
 ## Betting Smart Contract
+## Student Details
 
+- **Name:** Tanmay Godha
+- **Roll Number:** LIT2026013
+
+## Functions Implemented
+
+1. set_teams()
+2. open_betting()
+3. close_betting()
+4. put_bet()
+5. declare_result()
+6. distribute_amount()
 This folder contains my Solidity implementation of the Betting Smart Contract.
 ## Deployment Details
 
